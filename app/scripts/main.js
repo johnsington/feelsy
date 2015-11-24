@@ -25,18 +25,17 @@ function getUserTracks(access_token, next){
   .done(function (res){
     var data = res
     data.items.forEach(function(item){
-      item.safeArtistsName = item.track.artists.reduce(function(prev, cur, i, arr){
-        console.log(prev.name)
-        console.log(cur.name)
-        console.log(arr.length)
-        if (arr.length == 1 )
-          return prev.name
-
-        if (i == arr.length - 1)
-          return prev.name + ', and ' + cur.name
-        else
-          return prev.name + ', ' + prev.cur;
-      })
+      if(item.track.artists.length > 1){
+        item.safeArtistsName = item.track.artists.reduce(function(prev, cur, i, arr){
+          if (i == arr.length - 1)
+            return prev.name + ' and ' + cur.name
+          else
+            return prev.name + ', ' + prev.cur;
+        })
+      }
+      else {
+        item.safeArtistsName = item.track.artists[0].name;
+      }
       console.log(item.safeArtistsName)
     })
     next(data)
@@ -66,6 +65,7 @@ function templateData(tracks) {
   console.log('get here!!')
 
   $('#trackFeed').append(template(tracks))
+  $('#trackFeed li:first-child').addClass('active')
 
 }
 
@@ -92,5 +92,20 @@ $(document).ready(function(){
   if(params.access_token){
     getUserTracks(params.access_token, templateData)
   }
+
+  $('#listOne').click(function(e){
+    var li      = $('li:first-child'),
+        liNext  = $('li:nth-child(2)')
+
+    li.addClass('pop-off')
+
+    setTimeout(function(){
+      liNext.addClass('active')
+    }, 300)
+
+    setTimeout(function(){
+      li.remove()
+    }, 1000)
+  })
 
 })

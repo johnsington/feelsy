@@ -40,13 +40,13 @@
         </div>
       </div>
       <div class="button-drawer u-full-width clearfix">
-        <div class="button">
+        <div id="listOne" class="button">
           :-)
         </div>
-        <div class="button">
+        <div id="listTwo" class="button">
           :-(
         </div>
-        <div class="button">
+        <div id="listThree" class="button">
           :-|
         </div>
       </div>
@@ -55,10 +55,10 @@
     <script id="tracklist" type="text/x-handlebars-template">
       <ul>
         {{#each items}}
-          <li>
+          <li data-name="{{track.name}}" data-id="{{track.id}}">
             <span class="title">{{track.name}}</span>
             <br>
-            <span class="artist">{{safeArtistsName.name}}</span>
+            <span class="artist">{{safeArtistsName}}</span>
           </li>
         {{/each}}
       </ul>

@@ -3,6 +3,32 @@
 
 @import "skeleton";
 
+@-webkit-keyframes popOff {
+  0% {
+    opacity:1;
+    max-height: 82px;
+    transform: translate(0px,0px) rotate(0deg);
+  }
+  50%{
+    opacity:0;
+    transform: translate(-2px,-40px) rotate(-2deg);
+    max-height:70px;
+  }
+  100% {
+    opacity:0;
+    max-height:0px;
+    transform: translate(-4px,-40px) rotate(-3deg);
+  }
+}
+
+.pop-off {
+  -webkit-animation-name: popOff;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: 1;
+  opacity: 1;
+}
+
 body {
   background: #fafafa;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -29,14 +55,18 @@ header{
   font-size: 2.2em;
   line-height: 0;
 }
+
+#trackFeed {
+  max-height: 280px;
+  overflow: hidden;
+}
+
 .trackfeed {
   padding: 3em 2em 0;
   ul {
     list-style-type:none;
-    max-height: 250px;
-    overflow: hidden;
     li {
-      opacity:0.2;
+      opacity:0.4;
       font-size: 1.5em;
       filter: blur(2px);
       transition: all 0.2s;
@@ -48,9 +78,9 @@ header{
         color: #474747;
       }
     }
-    li:nth-child(2){
-      filter:blur(0px);
+    li.active {
       opacity:1;
+      filter: blur(0px);
     }
   }
 
