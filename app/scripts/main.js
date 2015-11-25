@@ -36,6 +36,7 @@ function getUserTracks(access_token, next){
       else {
         item.safeArtistsName = item.track.artists[0].name;
       }
+      console.dir(res);
       console.log(item.safeArtistsName)
     })
     next(data)
@@ -47,7 +48,7 @@ function getUserTracks(access_token, next){
 
 function authenticateUser(client_id){
     var scope = 'user-read-private user-read-email user-library-read'
-    var redirect_uri = 'http://localhost:9000/'
+    var redirect_uri = 'http://10.10.10.139:9000/'
 
     var url = 'https://accounts.spotify.com/authorize'
         url += '?response_type=token'
@@ -93,19 +94,32 @@ $(document).ready(function(){
     getUserTracks(params.access_token, templateData)
   }
 
-  $('#listOne').click(function(e){
-    var li      = $('li:first-child'),
-        liNext  = $('li:nth-child(2)')
+  for (var i = 1; i <= $('.list').length; i++) {
+    (function(it){
+      var idName = '#list-' + it
+      var reactIdName = '#react-' + it
+      console.log(idName)
+      $(idName).click(function(){
+        var li    = $('li:first-child'),
+          liNext  = $('li:nth-child(2)')
 
-    li.addClass('pop-off')
+        li.addClass('pop-off')
 
-    setTimeout(function(){
-      liNext.addClass('active')
-    }, 300)
+        $(reactIdName).addClass('pop-off')
 
-    setTimeout(function(){
-      li.remove()
-    }, 1000)
-  })
+        setTimeout(function(){
+          $(reactIdName).removeClass('pop-off')
+        }, 800)
+
+        setTimeout(function(){
+          liNext.addClass('active')
+        }, 300)
+
+        setTimeout(function(){
+          li.remove()
+        }, 800)
+      })
+    }(i))
+  };
 
 })

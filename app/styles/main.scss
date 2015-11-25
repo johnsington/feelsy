@@ -21,9 +21,12 @@
   }
 }
 
+.invisible {
+  opacity: 0;
+}
 .pop-off {
   -webkit-animation-name: popOff;
-  -webkit-animation-duration: 1s;
+  -webkit-animation-duration: 0.8s;
   -webkit-animation-timing-function: ease-in-out;
   -webkit-animation-iteration-count: 1;
   opacity: 1;
@@ -57,16 +60,20 @@ header{
 }
 
 #trackFeed {
-  max-height: 280px;
+  max-height: 19em;
   overflow: hidden;
 }
 
+.trackfeed-wrapper {
+  transform: translateY(0vh);
+}
 .trackfeed {
   padding: 3em 2em 0;
+  transform: translateY(-2em);
   ul {
     list-style-type:none;
     li {
-      opacity:0.4;
+      opacity:0.1;
       font-size: 1.5em;
       filter: blur(2px);
       transition: all 0.2s;
@@ -78,6 +85,9 @@ header{
         color: #474747;
       }
     }
+    li:nth-child(2){
+      opacity:0.2;
+    }
     li.active {
       opacity:1;
       filter: blur(0px);
@@ -86,16 +96,73 @@ header{
 
 }
 
+.reactions-wrapper {
+  position: absolute;
+  bottom:160px;
+  width:100%;
+  div {
+    padding-top:2em;
+    width:33.33%;
+    text-align: center;
+    float:left;
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+}
+
+
 .button-drawer {
   position: absolute;
   bottom:0px;
   text-align: center;
-  padding-bottom:5em;
+  font-size:0;
+  height:120px;
+  overflow: hidden;
   .button {
     display:inline-block;
-    width:100px;
+    width: 33.33%;
+    height: 170px;
+    padding-top: 2em;
+    transform: translateY(30px);
+    border: none;
+    border-radius: 0;
+    margin-bottom: 0;
+    transition: all 0.2s;
+    .fa {
+      color: white;
+      text-shadow: 0px 2px rgba(0,0,0,0.1);
+    }
+  }
+  .button:hover {
+    transform: translateY(10px);
   }
 }
+
+#list-1{
+  background: #FFCC00;
+}
+
+#list-2{
+  background: #6F96BD;
+}
+
+#list-3{
+  background: #828282;
+}
+
+#react-1 {
+  color: #FFCC00;
+}
+
+#react-2 {
+  color: #6F96BD;
+}
+
+#react-3 {
+  color: #828282;
+}
+
+
 
 .browsehappy {
   margin: 0.2em 0;

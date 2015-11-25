@@ -35,19 +35,30 @@
           <i class="fa fa-spotify"></i>
         </a>
       </div>
-      <div class="container">
+      <div class="container trackfeed-wrapper">
         <div class="trackfeed six columns offset-by-three" id="trackFeed">
         </div>
       </div>
-      <div class="button-drawer u-full-width clearfix">
-        <div id="listOne" class="button">
-          :-)
+      <div class="reactions-wrapper u-cf">
+        <div id='react-1' class="invisible">
+          + 1
         </div>
-        <div id="listTwo" class="button">
-          :-(
+        <div id='react-2' class="invisible">
+          + 1
         </div>
-        <div id="listThree" class="button">
-          :-|
+        <div id='react-3' class="invisible">
+          + 1
+        </div>
+      </div>
+      <div class="button-drawer u-full-width u-cf">
+        <div id="list-1" class="list button">
+          <i class="fa fa-smile-o fa-4x"></i>
+        </div>
+        <div id="list-2" class="list button">
+          <i class="fa fa-frown-o fa-4x"></i>
+        </div>
+        <div id="list-3" class="list button">
+          <i class="fa fa-umbrella fa-4x"></i>
         </div>
       </div>
     </section>
@@ -56,9 +67,11 @@
       <ul>
         {{#each items}}
           <li data-name="{{track.name}}" data-id="{{track.id}}">
-            <span class="title">{{track.name}}</span>
-            <br>
-            <span class="artist">{{safeArtistsName}}</span>
+            <div class="text-info">
+              <span class="title">{{track.name}}</span>
+              <br>
+              <span class="artist">{{safeArtistsName}}</span>
+            </div>
           </li>
         {{/each}}
       </ul>
