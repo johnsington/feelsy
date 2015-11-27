@@ -1,6 +1,11 @@
 Parse.initialize("1VgS4TGB6IxTL7uQp5YTxWFJRrPgwpwj7C9NCaAD", "mvoTnPKjzISniRKzYx4foLHpUmoeLVDXZeWlmSwc")
 
 var SPOTIFY_URL = 'https://api.spotify.com/'
+var userData = {}
+for (var i = 1; i <= 3; i++){
+  userData['playlist-' + i] = []
+}
+console.dir(userData)
 
 function getHashParams() {
   var hashParams = {};
@@ -48,7 +53,7 @@ function getUserTracks(access_token, next){
 
 function authenticateUser(client_id){
     var scope = 'user-read-private user-read-email user-library-read'
-    var redirect_uri = 'http://10.10.10.139:9000/'
+    var redirect_uri = 'http://localhost:9000/'
 
     var url = 'https://accounts.spotify.com/authorize'
         url += '?response_type=token'
@@ -117,6 +122,7 @@ $(document).ready(function(){
 
         setTimeout(function(){
           li.remove()
+          userData['playlist-' + it].push(li.attr('data-id'))
         }, 800)
       })
     }(i))
